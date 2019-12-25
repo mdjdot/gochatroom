@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/mdjdot/gochatroom/client/processes"
 )
 
 var (
@@ -25,23 +23,24 @@ func main() {
 		switch op {
 		case 1:
 			fmt.Println("登录...")
-			fmt.Print("请输入用户ID：")
-			n, err := fmt.Scanln(&userID)
+			conn, err := login()
 			if err != nil {
-				fmt.Println(n, err)
-				fmt.Println("用户ID错误，请重新选择")
+				fmt.Println("登录失败，请重新选择。错误：", err)
 				continue
 			}
-			fmt.Print("请输入用户密码：")
-			fmt.Scanln(&userPWD)
-
-			fmt.Printf("你输入的userid=%d pwd=%s\n", userID, userPWD)
-			processes.ProcessConn(userID, userPWD)
-
-			return
+			err = communite(conn)
+			if err != nil {
+				fmt.Println("通信失败，请重新选择。错误：", err)
+			}
+			continue
 		case 2:
 			fmt.Println("注册")
-			return
+			err := register()
+			if err != nil {
+				fmt.Println("注册失败，请重新选择。错误：", err)
+			}
+			fmt.Println("注册成功")
+			continue
 		case 3:
 			fmt.Println("退出")
 			return

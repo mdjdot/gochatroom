@@ -7,7 +7,7 @@ var Pool *redis.Pool
 
 func init() {
 	Pool = &redis.Pool{
-		MaxIdle:     8,
+		MaxIdle:     3,
 		MaxActive:   8,
 		IdleTimeout: 100,
 		Dial: func() (redis.Conn, error) {

@@ -3,6 +3,8 @@ package common
 const (
 	// LoginMessage 登录信息
 	LoginMessage = iota + 1
+	// RegisterMessage 注册信息
+	RegisterMessage
 	// RequestMessage 请求信息
 	RequestMessage
 	// ResponseMessage 相应信息
@@ -22,5 +24,10 @@ type Message struct {
 
 // LoginRespMessage .
 type LoginRespMessage struct {
+	Result bool
+}
+
+// RegisterRespMessage .
+type RegisterRespMessage struct {
 	Result bool
 }
