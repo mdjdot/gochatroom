@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/mdjdot/gochatroom/client/processes"
+)
 
 var (
 	homeStr = `
@@ -31,7 +35,9 @@ func main() {
 			fmt.Print("请输入用户密码：")
 			fmt.Scanln(&userPWD)
 
-			fmt.Printf("你输入的userid=%d pwd=%s", userID, userPWD)
+			fmt.Printf("你输入的userid=%d pwd=%s\n", userID, userPWD)
+			processes.ProcessConn(userID, userPWD)
+
 			return
 		case 2:
 			fmt.Println("注册")
